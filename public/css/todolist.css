@@ -41,6 +41,22 @@ body{
     font-size: 14px;
   }
 
+  .category-list{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 2.5rem; */
+    color: white;
+    border-radius: 4px;
+    padding : 1% 0;
+  }
+
+  .list_category_form button{
+   margin : 2px auto;
+  }
+
   .content{
     width: 60%;
     margin: 0 auto;

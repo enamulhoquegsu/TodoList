@@ -67,6 +67,18 @@ const listCategory = new mongoose.Schema({
 
 const List = mongoose.model('List', listCategory);
 
+let allCategories = [];
+
+List.find(function(err, foundLists){
+    if(foundLists.length > 0 ){
+        foundLists.forEach(function(item){
+           allCategories.push(item.category_name)
+        })
+    }
+})
+
+
+
 
 //
 
@@ -80,18 +92,22 @@ const List = mongoose.model('List', listCategory);
 /************************** get and post for main route ******************************* */
 app.get('/', (req, res)=>{
 
+    console.log(allCategories)
+
     Item.find(function(err, items){
         if(err){
             console.log(err)
             res.render('index', {
                 items : null,
-                category : getDate.getDay()
+                category : getDate.getDay(),
+                allLists : allCategories
             })
         }else{
             if(items.length > 0){
                 res.render('index', {
                    items : items,
-                   category : getDate.getDay()
+                   category : getDate.getDay(),
+                   allLists : allCategories
                 })
             }
 
@@ -163,11 +179,14 @@ app.post('/', urlencodedParser,(req, res)=>{
 /*******************  delete route   */
 
 app.post('/delete', urlencodedParser, (req, res)=>{
-    let id = req.body.id
-    let categoryName = req.body.categoryName;
-    console.log(id)
-    
+    //let id = req.body.name;
 
+    let id = req.body.check 
+
+    console.log(req.body)
+    //console.log(id)
+    let categoryName = req.body.categoryName;
+    
     if(categoryName === getDate.getDay()){
         Item.deleteOne({ _id: id }, function(err){
             if(err){
@@ -221,7 +240,8 @@ app.get('/:categoryName', urlencodedParser ,function(req, res){
         }else{
             res.render('index', {
                 items : foundList.items,
-                category : foundList.category_name   
+                category : foundList.category_name,
+                allLists : allCategories  
             })
         }
     })
@@ -229,6 +249,19 @@ app.get('/:categoryName', urlencodedParser ,function(req, res){
 })
 
 
+app.post('/add', urlencodedParser, function(req, res){
+    var c = req.body.categoryList;
+    res.redirect('/'+ c)
+})
+
+
+// create a category ...............................................................
+
+app.post('/category', urlencodedParser, function(req, res){
+    let categoryName = req.body.createCategory.trim()
+    categoryName = _.upperFirst(categoryName) 
+    res.redirect('/' + categoryName)
+})
 
 
 /************************************************************************************ */

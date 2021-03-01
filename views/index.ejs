@@ -16,9 +16,23 @@
     </section>
     <section id="content">
       <div class="create-search">
-        <form id="create_search_form" action="/category" method="post">
-          <input type="text" name="createSearch" id="createSearch" placeholder="Create or Search Category" required>
+        <form id="create_form" action="/category" method="post">
+          <input type="text" name="createCategory" placeholder="Create a category" autocomplete="off" required>
           <button type="submit">Enter</button>
+        </form>
+      </div>
+      <div class="category-list">
+        <form id="list_category_form" action="/add" method="post">
+            <label for="category">Choose category:</label>
+            <% if(allLists !== null){ %>
+              <select name="categoryList" id="cars">
+                <% allLists.map((category)=> { %>
+                  <option  value="<%=category%>"><%=category%></option>
+                <% }) %>
+              </select>
+            <% } %>
+            
+            <button type="submit">Enter</button>
         </form>
       </div>
       <div class="content">
@@ -31,9 +45,8 @@
             <% items.map((item)=> { %>
                 <div class="item">
                     <form id="<%=item._id%>" class="checkbox-form" method="post" action="/delete">
-                        <input class="checkbox" type="checkbox" name="checkbox" value="<%=item._id%>" />
+                        <input class="checkbox" type="checkbox" name="check" id="<%=item._id%>" value="<%=item._id%>" />
                         <p><%=item.item_name%></p>
-                        <input type="hidden" name="id" value="<%=item._id%>" />
                         <input type="hidden" name="categoryName" value="<%=category%>" />
                     </form>    
                 </div>
