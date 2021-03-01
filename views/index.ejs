@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/todolist.css">
+    <title>note</title>
+  </head>
+  <body>
+    <section id="header">
+      <div class="navbar">
+        <ul>
+          <li><i class="fas fa-home fa-2x"></i></li>
+        </ul>
+      </div>
+    </section>
+    <section id="content">
+      <div class="content">
+        <div class="title">
+          <p><%=category%></p>
+        </div>
+
+        <% if(items !== null){ %>
+
+            <% items.map((item)=> { %>
+                <div class="item">
+                    <form id="<%=item._id%>" class="checkbox-form" method="post" action="/delete">
+                        <input class="checkbox" type="checkbox" name="checkbox" value="<%=item._id%>" />
+                        <p><%=item.item_name%></p>
+                        <input type="hidden" name="id" value="<%=item._id%>" />
+                        <input type="hidden" name="categoryName" value="<%=category%>" />
+                    </form>    
+                </div>
+           <% }) %>
+
+        <% } %>
+
+        
+          
+       
+        
+        <div class="form">
+          <form class="form-item" action="/" method="post">
+              <input type="text" name="inputName" placeholder="New Item" autocomplete="off" required>
+              <button type="submit" value="<%=category%>" name="button"><i style="color:#845ec2" class="fas fa-plus-circle fa-3x"></i></button>
+          </form>
+        </div>
+      </div>
+    </section>
+    <section id="footer">
+      <div class="footer">
+        <p>Enamul Hoque</p>
+        <p>Email: enamulhoquegsu@gmail.com</p>
+        <p>Phone: 323-394-2078</p>
+      </div>
+    </section>
+
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="./js/note.js"></script> 
+</html>
