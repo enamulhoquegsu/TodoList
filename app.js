@@ -201,6 +201,7 @@ app.get('/:categoryName', urlencodedParser ,function(req, res){
 
     List.findOne({category_name: categoryName}, function(err, foundList){
         if(err){
+            res.redirect('/' + categoryName) 
 
         }else if(foundList === null){
 
@@ -211,9 +212,9 @@ app.get('/:categoryName', urlencodedParser ,function(req, res){
 
             listItem.save(function(err){
                 if(err){
-                    res.redirect('/categoryName')
+                    res.redirect('/' + categoryName)
                 }else{
-                    res.redirect('/categoryName') 
+                    res.redirect('/' + categoryName) 
                 }
             })
             
@@ -224,8 +225,6 @@ app.get('/:categoryName', urlencodedParser ,function(req, res){
             })
         }
     })
-
-    console.log(categoryName)
 
 })
 

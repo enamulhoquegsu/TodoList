@@ -19,12 +19,28 @@ body{
   #header ul li{
     display: inline;
     list-style-type: none;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
   }
   
   #content{
     width: 100%;
   }
+  .create-search{
+    width: 60%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* font-size: 2.5rem; */
+    color: white;
+    border-radius: 4px;
+    padding : 1% 0;
+  }
+
+  #create_search_form input {
+    font-size: 14px;
+  }
+
   .content{
     width: 60%;
     margin: 0 auto;
@@ -32,6 +48,8 @@ body{
     padding:1%;
   
   }
+
+  
   
   .title{
     width: 80%;

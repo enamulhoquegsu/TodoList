@@ -15,6 +15,12 @@
       </div>
     </section>
     <section id="content">
+      <div class="create-search">
+        <form id="create_search_form" action="/category" method="post">
+          <input type="text" name="createSearch" id="createSearch" placeholder="Create or Search Category" required>
+          <button type="submit">Enter</button>
+        </form>
+      </div>
       <div class="content">
         <div class="title">
           <p><%=category%></p>

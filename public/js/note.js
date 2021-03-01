@@ -18,10 +18,9 @@ $(function(){
                   this.checked = false;
                   
                 }
-            });
-
-            
+            });    
                
         }
     })
+
 });
